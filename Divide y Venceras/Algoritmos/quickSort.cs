@@ -6,41 +6,41 @@ using System.Threading.Tasks;
 
 namespace Divide_y_Venceras.Algoritmos
 {
-    public struct quickSort
+    public struct OrdenamientoRapido
     {
-        public void Sort(int[] array, int left, int right)
+        public void Ordenar(int[] arreglo, int izquierda, int derecha)
         {
-            if (left < right)
+            if (izquierda < derecha)
             {
-                int pivotIndex = Partition(array, left, right);
-                Sort(array, left, pivotIndex - 1);
-                Sort(array, pivotIndex + 1, right);
+                int indicePivote = Particion(arreglo, izquierda, derecha);
+                Ordenar(arreglo, izquierda, indicePivote - 1);
+                Ordenar(arreglo, indicePivote + 1, derecha);
             }
         }
 
-        private int Partition(int[] array, int left, int right)
+        private int Particion(int[] arreglo, int izquierda, int derecha)
         {
-            int pivot = array[right];
-            int i = left - 1;
+            int pivote = arreglo[derecha];
+            int i = izquierda - 1;
 
-            for (int j = left; j < right; j++)
+            for (int j = izquierda; j < derecha; j++)
             {
-                if (array[j] < pivot)
+                if (arreglo[j] < pivote)
                 {
                     i++;
-                    Swap(ref array[i], ref array[j]);
+                    Intercambiar(ref arreglo[i], ref arreglo[j]);
                 }
             }
 
-            Swap(ref array[i + 1], ref array[right]);
+            Intercambiar(ref arreglo[i + 1], ref arreglo[derecha]);
             return i + 1;
         }
 
-        private void Swap(ref int a, ref int b)
+        private void Intercambiar(ref int a, ref int b)
         {
-            int temp = a;
+            int temporal = a;
             a = b;
-            b = temp;
+            b = temporal;
         }
     }
 }

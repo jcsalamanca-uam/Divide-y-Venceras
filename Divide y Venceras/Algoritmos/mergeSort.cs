@@ -6,62 +6,62 @@ using System.Threading.Tasks;
 
 namespace Divide_y_Venceras.Algoritmos
 {
-    public struct mergeSort
+    public struct MezclaOrdenada
     {
-        public void Sort(int[] array, int left, int right)
+        public void Ordenar(int[] arreglo, int izquierda, int derecha)
         {
-            if (left < right)
+            if (izquierda < derecha)
             {
-                int mid = left + (right - left) / 2;
-                Sort(array, left, mid);
-                Sort(array, mid + 1, right);
-                Merge(array, left, mid, right);
+                int medio = izquierda + (derecha - izquierda) / 2;
+                Ordenar(arreglo, izquierda, medio);
+                Ordenar(arreglo, medio + 1, derecha);
+                Mezclar(arreglo, izquierda, medio, derecha);
             }
         }
 
-        private void Merge(int[] array, int left, int mid, int right)
+        private void Mezclar(int[] arreglo, int izquierda, int medio, int derecha)
         {
-            int n1 = mid - left + 1;
-            int n2 = right - mid;
+            int n1 = medio - izquierda + 1;
+            int n2 = derecha - medio;
 
-            int[] leftArray = new int[n1];
-            int[] rightArray = new int[n2];
+            int[] arregloIzquierda = new int[n1];
+            int[] arregloDerecha = new int[n2];
 
             for (int i = 0; i < n1; i++)
-                leftArray[i] = array[left + i];
+                arregloIzquierda[i] = arreglo[izquierda + i];
             for (int j = 0; j < n2; j++)
-                rightArray[j] = array[mid + 1 + j];
+                arregloDerecha[j] = arreglo[medio + 1 + j];
 
-            int iIndex = 0, jIndex = 0;
-            int kIndex = left;
+            int indiceIzquierda = 0, indiceDerecha = 0;
+            int indiceMezcla = izquierda;
 
-            while (iIndex < n1 && jIndex < n2)
+            while (indiceIzquierda < n1 && indiceDerecha < n2)
             {
-                if (leftArray[iIndex] <= rightArray[jIndex])
+                if (arregloIzquierda[indiceIzquierda] <= arregloDerecha[indiceDerecha])
                 {
-                    array[kIndex] = leftArray[iIndex];
-                    iIndex++;
+                    arreglo[indiceMezcla] = arregloIzquierda[indiceIzquierda];
+                    indiceIzquierda++;
                 }
                 else
                 {
-                    array[kIndex] = rightArray[jIndex];
-                    jIndex++;
+                    arreglo[indiceMezcla] = arregloDerecha[indiceDerecha];
+                    indiceDerecha++;
                 }
-                kIndex++;
+                indiceMezcla++;
             }
 
-            while (iIndex < n1)
+            while (indiceIzquierda < n1)
             {
-                array[kIndex] = leftArray[iIndex];
-                iIndex++;
-                kIndex++;
+                arreglo[indiceMezcla] = arregloIzquierda[indiceIzquierda];
+                indiceIzquierda++;
+                indiceMezcla++;
             }
 
-            while (jIndex < n2)
+            while (indiceDerecha < n2)
             {
-                array[kIndex] = rightArray[jIndex];
-                jIndex++;
-                kIndex++;
+                arreglo[indiceMezcla] = arregloDerecha[indiceDerecha];
+                indiceDerecha++;
+                indiceMezcla++;
             }
         }
     }

@@ -8,25 +8,25 @@ namespace Divide_y_Venceras.Algoritmos
 {
     public struct Busqueda_binaria
     {
-        public int Search(int[] array, int target)
+        public int Buscar(int[] arreglo, int objetivo)
         {
-            int left = 0;
-            int right = array.Length - 1;
+            int izquierda = 0;
+            int derecha = arreglo.Length - 1;
 
-            while (left <= right)
+            while (izquierda <= derecha)
             {
-                int mid = left + (right - left) / 2;
+                int medio = izquierda + (derecha - izquierda) / 2;
 
-                if (array[mid] == target)
-                    return mid;
+                if (arreglo[medio] == objetivo)
+                    return medio;
 
-                if (array[mid] < target)
-                    left = mid + 1;
+                if (arreglo[medio] < objetivo)
+                    izquierda = medio + 1;
                 else
-                    right = mid - 1;
+                    derecha = medio - 1;
             }
 
-            return -1; 
+            return -1;
         }
     }
 }
